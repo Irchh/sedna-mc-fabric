@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.gradleup.shadow' version '8.3.5'
 }
 
 version = project.mod_version
@@ -72,6 +73,19 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${inputs.properties.archivesName}"}
 	}
+}
+
+build {
+	finalizedBy 'shadowJar'
+}
+
+shadowJar {
+	dependencies {
+		include(dependency('li.cil.ceres:ceres:.*'))
+		include(dependency('li.cil.sedna:sedna:.*'))
+		include(dependency('li.cil.sedna:sedna-buildroot:.*'))
+	}
+	archiveClassifier.set('')
 }
 
 // configure the maven publication
