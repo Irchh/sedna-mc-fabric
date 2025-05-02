@@ -1,4 +1,4 @@
-package li.cil.sedna;
+package li.cil.sednamc;
 
 import net.fabricmc.api.ModInitializer;
 
